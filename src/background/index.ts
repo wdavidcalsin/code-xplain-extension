@@ -1,27 +1,15 @@
-chrome.tabs.query(
-  {
-    active: true,
-    currentWindow: true,
-  },
-  function (tabs) {
-    var activeTab = tabs[0];
-    console.log(activeTab);
-  }
-);
-
-// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-//   console.log("I am background script");
-//   console.log(message);
-//   sendResponse({ message: "Response from background JS" });
-// });
+import { onMessage } from "webext-bridge";
 
 console.log("I am background.js");
 
-chrome.runtime.onMessage.addListener(async function (message) {
-  const { clave } = message;
+onMessage("get-selection", async ({ sender, data }) => {
+  const { text } = data as { text: string };
+
+  console.log(sender.context, sender.tabId);
+
   const API_URL = "https://code-xplain-server.vercel.app/api/openai";
 
-  const url = `${API_URL}/?query=${JSON.stringify(clave)}`;
+  const url = `${API_URL}/?query=${JSON.stringify(text)}`;
 
   console.log(JSON.stringify(url));
 
@@ -44,5 +32,6 @@ chrome.runtime.onMessage.addListener(async function (message) {
   };
 
   console.log("Message Received:", responseMessage);
+
   return Promise.resolve({ respuesta: "Hola desde el script receptor" });
 });

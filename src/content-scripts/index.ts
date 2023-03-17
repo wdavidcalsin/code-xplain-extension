@@ -1,27 +1,19 @@
-import { linkedinConnector } from "../services/LinkedinConnector";
-import { LinkedInWebPage } from "../services/LinkedinWebPage";
-import { messagingClient } from "../services/WebPageMessaging";
-
-main();
-
-async function main() {
-  // subscribe to events from the extension
-  new LinkedInWebPage(
-    messagingClient,
-    linkedinConnector
-  ).subscribeToExtensionMessages();
-}
+import { sendMessage } from "webext-bridge";
 
 let selectText;
 
-document.addEventListener("mouseup", function () {
+document.addEventListener("mouseup", async function (event) {
   selectText = window.getSelection()?.toString();
 
+  console.log(event);
   console.log(selectText);
 
   if (selectText !== "") {
-    chrome.runtime.sendMessage({ clave: selectText }, function (response) {
-      console.log("Response received:", response);
-    });
+    const res = await sendMessage(
+      "get-selection",
+      { text: selectText },
+      "background"
+    );
+    console.log(res);
   }
 });
