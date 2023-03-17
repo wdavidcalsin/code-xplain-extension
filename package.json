@@ -21,6 +21,7 @@
     "vite": "^4.1.4"
   },
   "dependencies": {
+    "daisyui": "^2.51.4",
     "webext-bridge": "^5.0.5"
   }
 }

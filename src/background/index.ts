@@ -33,5 +33,5 @@ onMessage("get-selection", async ({ sender, data }) => {
 
   console.log("Message Received:", responseMessage);
 
-  return Promise.resolve({ respuesta: "Hola desde el script receptor" });
+  return Promise.resolve({ respuesta: responseMessage });
 });
