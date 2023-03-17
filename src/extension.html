@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linkedin connect</title>
+    <link rel="stylesheet" href="./extension.css" />
+  </head>
+  <body
+    class="bg-slate-800 min-h-[300px] min-w-[300px] flex flex-col justify-center items-center"
+  >
+    <label for="is-demo" class="text-white text-lg my-2">
+      Demo mode
+      <input id="is-demo" type="checkbox" value="isDemo" checked />
+    </label>
+    <button
+      id="connect-btn"
+      class="bg-teal-200 p-3 text-black font-bold rounded active:scale-105"
+    >
+      START CONNECTING
+    </button>
+    <script type="module" src="./extension-scripts/index.ts"></script>
+  </body>
+</html>

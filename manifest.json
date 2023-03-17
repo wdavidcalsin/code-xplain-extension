@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Linkedin connect",
+  "author": "devsamrood@gmail.com",
+  "description": "A quick way to connect Linkedin users",
+  "version": "0.0.1",
+  "action": {
+    "default_popup": "./src/extension.html",
+    "default_title": "Linkedin connect"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./src/content-scripts/index.ts"],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "service_worker": "src/background/index.ts",
+    "type": "module"
+  },
+  "permissions": ["scripting", "tabs", "activeTab", "bookmarks", "storage"],
+  "host_permissions": ["https://*/*"],
+  "icons": {
+    "128": "linkedin.png"
+  }
+}
