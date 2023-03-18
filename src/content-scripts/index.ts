@@ -11,9 +11,11 @@ document.addEventListener("mouseup", async (event) => {
 
   document.body.appendChild(floatingButtonImg);
 
-  document.addEventListener("mousedown", (event) => {
-    if (event.target !== floatingButtonImg) {
-      floatingButtonImg.remove();
-    }
-  });
+  if (selectText) {
+    document.addEventListener("mousedown", (event) => {
+      if (event.target !== floatingButtonImg) {
+        floatingButtonImg.remove();
+      }
+    });
+  }
 });

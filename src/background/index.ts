@@ -15,18 +15,20 @@ onMessage("get-selection", async ({ sender, data }) => {
     console.error("Event source Onerror:", error);
     eventSource.close();
   };
-
-  eventSource.onmessage = (event) => {
-    const { data } = event;
-    console.log(data);
-    if (data === "[DONE]") {
-      eventSource.close();
-      return;
-    }
-    responseMessage += JSON.parse(data);
-  };
-
   console.log("Message Received:", responseMessage);
 
-  return Promise.resolve({ response: 'Respondiendo desde el background' });
+  return new Promise((resolve) => {
+    eventSource.onmessage = (event) => {
+      const { data } = event;
+      console.log(data);
+      if (data === "[DONE]") {
+        eventSource.close();
+        resolve(responseMessage);
+      } else {
+        responseMessage += JSON.parse(data);
+      }
+    };
+  });
+
+  // return Promise.resolve({ response: responseMessage });
 });

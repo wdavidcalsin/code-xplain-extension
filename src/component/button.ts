@@ -1,4 +1,4 @@
-import { sendMessage } from "webext-bridge";
+import interact from "interactjs";
 import {
   FLOATING_BUTTON_IMG_CLASS_LIST,
   FLOATING_BUTTON_IMG_SRC,
@@ -17,7 +17,7 @@ export const createFloatingButton = (event: MouseEvent, selectText: string) => {
   floatingButtonImg.classList.add(...FLOATING_BUTTON_IMG_CLASS_LIST);
   floatingButtonImg.style.padding = "0";
 
-  floatingButtonImg.addEventListener("click", async (eventClick) => {
+  floatingButtonImg.addEventListener("click", (eventClick) => {
     handleClick(eventClick, selectText);
     floatingButtonImg.style.display = "none";
     floatingButtonImg.remove();
@@ -26,16 +26,25 @@ export const createFloatingButton = (event: MouseEvent, selectText: string) => {
   return floatingButtonImg;
 };
 
-const handleClick = async (event: MouseEvent, selectText: string) => {
-  const res = await sendMessage(
-    "get-selection",
-    { text: selectText },
-    "background"
-  );
-  console.log(res);
-
+const handleClick = (event: MouseEvent, selectText: string) => {
   window.getSelection()?.removeAllRanges();
 
-  const floatingContent = popover(event);
+  const floatingContent = popover(event, selectText);
+
+  const position = { x: 0, y: 0 };
+  interact(".draggable").draggable({
+    listeners: {
+      start(event) {
+        console.log(event.type, event.target);
+      },
+      move(event) {
+        position.x += event.dx;
+        position.y += event.dy;
+
+        event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
+      },
+    },
+  });
+
   document.body.appendChild(floatingContent);
 };

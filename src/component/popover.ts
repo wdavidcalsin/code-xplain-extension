@@ -1,10 +1,13 @@
-import interact from "interactjs";
 import { FLOATING_CONTENT_CLASS_LIST } from "../constants";
 import { popoverContent } from "./popover-content";
 
-export const popover = (eventClick: MouseEvent) => {
+export const popover = (eventClick: MouseEvent, selectText: string) => {
   const floatingContent = document.createElement("div");
-  floatingContent.innerText += popoverContent("Hello how are you");
+  const popoverContentVal = popoverContent(selectText);
+  floatingContent.appendChild(popoverContentVal);
+
+  floatingContent.setAttribute("data-floating-content", "");
+
   floatingContent.style.zIndex = "100";
   floatingContent.style.position = "absolute";
   floatingContent.style.left = `${eventClick.clientX - 10 + window.scrollX}px`;
@@ -12,24 +15,10 @@ export const popover = (eventClick: MouseEvent) => {
 
   floatingContent.classList.add(...FLOATING_CONTENT_CLASS_LIST);
 
-  const position = { x: 0, y: 0 };
-
-  interact(".draggable").draggable({
-    listeners: {
-      start(event) {
-        console.log(event.type, event.target);
-      },
-      move(event) {
-        position.x += event.dx;
-        position.y += event.dy;
-
-        event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
-      },
-    },
-  });
-
   document.addEventListener("mousedown", (eventClick) => {
-    if (eventClick.target !== floatingContent) {
+    const target = eventClick.target as HTMLElement;
+
+    if (!floatingContent.contains(target)) {
       floatingContent.remove();
     }
   });
