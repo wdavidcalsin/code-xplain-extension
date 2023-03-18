@@ -1,12 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Linkedin connect",
-  "author": "devsamrood@gmail.com",
-  "description": "A quick way to connect Linkedin users",
+  "name": "Code Xplain Vite",
+  "author": "david2c142@gmail.com",
+  "description": "Code Xplain Vite",
   "version": "0.0.1",
   "action": {
     "default_popup": "./src/extension.html",
-    "default_title": "Linkedin connect"
+    "default_title": "Code Xplain Vite"
   },
   "content_scripts": [
     {
@@ -22,6 +22,6 @@
   "permissions": ["scripting", "tabs", "activeTab", "bookmarks", "storage"],
   "host_permissions": ["https://*/*"],
   "icons": {
-    "128": "linkedin.png"
+    "128": "code-logo.png"
   }
 }

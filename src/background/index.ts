@@ -1,4 +1,5 @@
 import { onMessage } from "webext-bridge";
+import { eventSourceOpenAi } from "../services";
 
 console.log("I am background.js");
 
@@ -7,13 +8,7 @@ onMessage("get-selection", async ({ sender, data }) => {
 
   console.log(sender.context, sender.tabId);
 
-  const API_URL = "https://code-xplain-server.vercel.app/api/openai";
-
-  const url = `${API_URL}/?query=${JSON.stringify(text)}`;
-
-  console.log(JSON.stringify(url));
-
-  const eventSource = new EventSource(url);
+  const eventSource = eventSourceOpenAi(text);
   let responseMessage = "";
 
   eventSource.onerror = (error) => {
@@ -33,5 +28,5 @@ onMessage("get-selection", async ({ sender, data }) => {
 
   console.log("Message Received:", responseMessage);
 
-  return Promise.resolve({ respuesta: responseMessage });
+  return Promise.resolve({ response: 'Respondiendo desde el background' });
 });

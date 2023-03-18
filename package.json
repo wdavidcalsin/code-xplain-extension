@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "daisyui": "^2.51.4",
+    "interactjs": "^1.10.17",
     "webext-bridge": "^5.0.5"
   }
 }
