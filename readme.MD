@@ -1,9 +1,12 @@
 # Codexplain
 
-Codexplain is a Chrome extension that allows you to select any code on a web page and get a detailed explanation of that code. Simply select the code you want to explain and a popover will appear with the relevant information.
+Codexplain is a Chrome extension that allows you to select any code on a web page and get a detailed explanation of that code. It uses OpenAI's API to provide the explanations. Simply select the code you want to explain and a popover will appear with the relevant information.
 
 <p align="center">
-  <a href="#" rel="noopener" target="_blank"><img width="900" src="https://i.postimg.cc/CKBmB7xH/Captura-de-pantalla-2023-03-14-160815.png" alt="Grammar logo"></a>
+  <a href="#" rel="noopener" target="_blank"><img width="900" src="https://i.postimg.cc/PfZMxQcX/Captura-de-pantalla-2023-03-18-203245.png" alt="Grammar logo"></a>
+</p>
+<p align="center">
+  <a href="#" rel="noopener" target="_blank"><img width="900" src="https://i.postimg.cc/65XfGGJd/Captura-de-pantalla-2023-03-18-203323.png" alt="Grammar logo"></a>
 </p>
 
 ## Installation
