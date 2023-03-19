@@ -16,7 +16,6 @@ export const FLOATING_CONTENT_CLASS_LIST = [
   "border-solid",
   "border-gray-400",
   "bg-white",
-  "shadow",
   "text-lg",
   "font-medium",
   "text-slate-800",
