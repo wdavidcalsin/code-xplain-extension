@@ -1,12 +1,8 @@
 import { onMessage } from "webext-bridge";
 import { eventSourceOpenAi } from "../services";
 
-console.log("I am background.js");
-
-onMessage("get-selection", async ({ sender, data }) => {
+onMessage("get-selection", async ({ data }) => {
   const { text } = data as { text: string };
-
-  console.log(sender.context, sender.tabId);
 
   const eventSource = eventSourceOpenAi(text);
   let responseMessage = "";
@@ -15,12 +11,11 @@ onMessage("get-selection", async ({ sender, data }) => {
     console.error("Event source Onerror:", error);
     eventSource.close();
   };
-  console.log("Message Received:", responseMessage);
 
   return new Promise((resolve) => {
     eventSource.onmessage = (event) => {
       const { data } = event;
-      console.log(data);
+
       if (data === "[DONE]") {
         eventSource.close();
         resolve(responseMessage);
@@ -29,6 +24,4 @@ onMessage("get-selection", async ({ sender, data }) => {
       }
     };
   });
-
-  // return Promise.resolve({ response: responseMessage });
 });
