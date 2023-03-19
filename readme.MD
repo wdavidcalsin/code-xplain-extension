@@ -1,34 +1,20 @@
-# Linkedin Connect Chrome extension
+# Codexplain
 
-Hi, welcome to LinkedIn Connect Chrome extension repository.
-This extension automates connecting users you searched for in LinkedIn.
+Codexplain is a Chrome extension that allows you to select any code on a web page and get a detailed explanation of that code. Simply select the code you want to explain and a popover will appear with the relevant information.
 
-## Disclaimer
+<p align="center">
+  <a href="#" rel="noopener" target="_blank"><img width="900" src="https://i.postimg.cc/CKBmB7xH/Captura-de-pantalla-2023-03-14-160815.png" alt="Grammar logo"></a>
+</p>
 
-Thank you for using this demo tool. Please note that this extension is designed
-solely for demonstration purposes, and should not be used to violate LinkedIn's
-policies or to engage in any abusive behavior towards LinkedIn users.
-We strongly advise you to only use this tool to connect with individuals you know
-and to respect their privacy and boundaries. Please understand that any misuse
-of this tool may result in the suspension or termination of your LinkedIn account.
+## Installation
 
-## Installation ( extension under review )
-
-The extension is under review by the chrome developer team and is
-currently unavailable for installation.
+The extension is being reviewed by the Chrome development team and is currently not available for installation.
 
 ## How to use this extension
 
-1. Search for the users you want to connect on LinkedIn
-2. Open the extension and click 'Start connecting'. You can pause connecting by
-3. clicking on the 'Stop connecting' button.
-
-## Demo mode
-
-There is a "demo mode" checkbox that is turned on by default. Running the extension in
-Demo mode would only turn the background of the connect buttons to the color red rather than
-actually clicking them. This is useful if you want to test the functionality without actually
-connecting to users
+1. Open a web page with code you want to explain
+2. Select the code you want to explain with the cursor
+3. A popover with the explanation of the selected code will open
 
 ## Development
 
@@ -41,25 +27,18 @@ I configured Vite for the same.
 npm run build:watch
 ```
 
-1. You can update the extension in the chrome extensions manager page by clicking on the 'update' button.
+2. You can update the extension in the chrome extensions manager page by clicking on the 'update' button.
 
-## Code Architecture
+# Contributing
 
-The extension is built with HTML, CSS and Javascript. The file extension.html in src
-provides the markup for the extension as well tailwind classes for styling. The CSS file 'extension.css' in src imports tailwind utilities.
-In addition, there are two entry point scripts, one with the extension's HTML document API for
-managing the extension's elements and another with the active tabs API for managing the web page.
-They are respectively in 'content-scripts' and 'extension-scripts' folder.
-Both these scripts use other services which are in the src/services folder
+Thank you for considering contributing to Codexplain! If you want to make a contribution, please follow these steps:
 
-| Particular          | File path                      |
-| ------------------- | ------------------------------ |
-| Extension markup    | src/extension.html             |
-| Extension styling   | src/extension.css              |
-| Extension scripting | src/extension-scripts/index.ts |
-| Web page scripting  | src/content-scripts/index.ts   |
+1. Fork this repository
+2. Create a branch with your change (git checkout -b my-change)
+3. Make your changes and commit them (git commit -am "Added a new change")
+4. Push your changes to your fork (git push origin my-change)
+5. Open a pull request in this repository and describe your changes.
 
-# References
+# License
 
-1. [How to create a chrome extension - Freecodecamp](https://www.freecodecamp.org/news/building-chrome-extension/)
-2. [Message passing between content and extension pop up script](https://developer.chrome.com/docs/extensions/mv3/messaging/)
+This project is under the MIT License.
